@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://www.jtopo.com/download/jtopo-0.4.8-min.js"></script>
+    <script src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <script src="./jtopo.js"></script>
+    <script src="./jtopo.link.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+    <canvas id="canvas" width="300" height="300" style="width: 400;height: 200">
+
+    </canvas>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $(function () {
+                $(window).resize(resizeCanvas)
+                resizeCanvas();
+            })
+
+            var canvas = document.getElementById('canvas');
+
+            var stage = new JTopo.Stage(canvas); //创建一个舞台对象
+            var scene = new JTopo.Scene(stage); //创建一个场景对象
+            scene.alpha = 1
+            scene.mode = 'drag'
+
+            scene.backgroundColor = '7,21,48'
+            //云端
+            var nodeCloud = new JTopo.Node()
+            nodeCloud.setLocation(880, 88)
+            nodeCloud.setImage('./img/cloud.png')
+            nodeCloud.setSize(100, 75)
+            nodeCloud.text = '云端'
+            nodeCloud.textPosition = 'Top_Center'
+            scene.add(nodeCloud)
+
+            console.log(nodeCloud)
+
+
+            //两个梯形
+            JTopo.Trapezoid({
+                scene: scene,
+                left: 825,
+                top: 290,
+                a: 200,
+                b: 432,
+                h: 75,
+                strokeColor: '54,123,227',
+                lineWidth: 2,
+                dashedPattern: '0.1',
+                fullColor:'27,65,135'
+            })
+            JTopo.Trapezoid({
+                scene: scene,
+                left: 825,
+                top: 450,
+                a: 200,
+                b: 432,
+                h: 75,
+                strokeColor: '54,123,227',
+                lineWidth: 2,
+                dashedPattern: '0.1',
+                fullColor:'27,65,135'
+
+            })
+            JTopo.newNode({
+                scene: scene,
+                left: 709,
+                top: 367,
+                width: 435,
+                height: 15,
+                fillColor: '54,123,227',
+
+            })
+            JTopo.newNode({
+                scene: scene,
+                left: 709,
+                top: 527,
+                width: 435,
+                height: 15,
+                fillColor: '54,123,227',
+
+            })
+
+
+            //下方梯形中的内容
+
+            var bsg1 = JTopo.newNode({
+                scene: scene,
+                left: 830,
+                top: 480,
+                width: 40,
+                height: 40,
+                fillColor: '6,236,244',
+                image: './img/zone.png',
+                text: 'BSG',
+                textPosition: 'Top_Center',
+                font: '14px 微软雅黑'
+            })
+            JTopo.newNode({
+                scene: scene,
+                left: 910,
+                top: 480,
+                width: 40,
+                height: 40,
+                fillColor: '6,236,244',
+                image: './img/zone.png',
+                text: 'BSG',
+                textPosition: 'Top_Center',
+                font: '14px 微软雅黑'
+            })
+            JTopo.newNode({
+                scene: scene,
+                left: 980,
+                top: 480,
+                width: 40,
+                height: 40,
+                fillColor: '6,236,244',
+                image: './img/zone.png',
+                text: 'BSG',
+                textPosition: 'Top_Center',
+                font: '14px 微软雅黑'
+            })
+
+            // 上方梯形中的内容
+
+            JTopo.rectangle({
+
+                scene: scene,
+                left: 820,
+                top: 320,
+                width: 220,
+                height: 35,
+                dashedPattern: 4
+            })
+
+
+            var nodelist = []
+            nodelist.push(JTopo.newNode({
+                scene: scene,
+                left: 830,
+                top: 250,
+                width: 40,
+                height: 40,
+                fillColor: '6,236,244',
+                image: './img/laptop.png',
+                text: '指纹',
+                textPosition: 'Top_Center',
+                font: '14px 微软雅黑'
+            }))
+
+            nodelist.push(JTopo.newNode({
+                scene: scene,
+                left: 910,
+                top: 250,
+                width: 40,
+                height: 40,
+                fillColor: '6,236,244',
+                image: './img/laptop.png',
+                text: 'IP',
+                textPosition: 'Top_Center',
+                font: '14px 微软雅黑'
+            }))
+
+            nodelist.push(JTopo.newNode({
+                scene: scene,
+                left: 980,
+                top: 250,
+                width: 40,
+                height: 40,
+                fillColor: '6,236,244',
+                image: './img/laptop.png',
+                text: '账号',
+                textPosition: 'Top_Center',
+                font: '14px 微软雅黑'
+            }))
+
+            nodelist.map(function(item){
+                var link = new JTopo.FlexionalLink(nodeCloud, item);
+                link.strokeColor = '6,236,244';
+                link.lineWidth = 1;
+                scene.add(link);
+            })
+
+            //中间线段
+
+            var nodeTop1 = JTopo.newNode({
+                scene:scene,
+                left:850,
+                top:390,
+                width:1,
+                height:1
+            })
+
+            JTopo.newLink({scene:scene,node1:bsg1,node2:nodeTop1,arrowsRadius:20})
+
+
+
+            JTopo.newLink({scene:scene,node1:JTopo.newNode({scene:scene,left:200,top:200,width:0,height:0}),node2:JTopo.newNode({scene:scene,left:300,top:300,width:0,height:0})})
+
+
+
+
+
+
+
+
+
+
+
+            // var node1 = new JTopo.Node()
+            // var node2 = new JTopo.Node()
+            // node1.setLocation(200,200)
+            // node2.setLocation(400,400)
+            // node1.text = '1'
+            // node2.text = '2' 
+            // JTopo.test(document.getElementById("canvas"));
+
+            //canvas
+            // var canvas = document.getElementById("canvas")
+            // var ctx = canvas.getContext("2d")
+            // ctx.beginPath()
+
+            // ctx.lineTo(100,100)
+            // ctx.lineTo(200,100)
+            // ctx.lineTo(200,200)
+            // ctx.closePath()
+            // ctx.lineWidth = '2'
+            // ctx.fillStyle = '#F6F152'
+            // ctx.strokeStyle = '#F5270B'
+            // ctx.fill()
+            // ctx.stroke()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+
+
+
+        //窗口尺寸改变响应（修改canvas大小）
+        function resizeCanvas() {
+            $("#canvas").attr("width", $(window).get(0).innerWidth);
+            $("#canvas").attr("height", $(window).get(0).innerHeight);
+        };
+
+        //绘制
+    </script>
+</body>
+
+</html>

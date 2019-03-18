@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://www.jtopo.com/download/jtopo-0.4.8-min.js"></script>
+    <script src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="./jtopo.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <canvas id="canvas" style="width: 400;height: 200">
+
+    </canvas>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $(function () {
+                //添加窗口尺寸改变响应监听
+                $(window).resize(resizeCanvas);
+                //页面加载后先设置一下canvas大小
+                resizeCanvas();
+            });
+
+
+            var canvas = document.getElementById('canvas');
+            var stage = new JTopo.Stage(canvas); //创建一个舞台对象
+            var scene = new JTopo.Scene(stage); //创建一个场景对象
+            scene.alpha = 1
+            scene.mode = 'drag'
+            scene.backgroundColor = '7,21,48'
+
+            var defaultNode = new JTopo.Node();
+            defaultNode.text = '微软雅黑'; // 文字
+            defaultNode.textPosition = 'Bottom_Center'; // 文字居中
+            defaultNode.textOffsetY = 8; // 文字向下偏移8个像素
+            defaultNode.font = '14px 微软雅黑'; // 字体
+            defaultNode.setLocation(180, 100); // 位置
+            defaultNode.setSize(100, 60); // 尺寸
+            defaultNode.setImage('./img/comput.jpg')
+            defaultNode.rotate = 0.6
+            defaultNode.borderColor = '255,255,255'; //边框颜色            
+            defaultNode.alpha = 0.7; //透明度
+            // defaultNode.scaleX = 0.5
+            scene.add(defaultNode);
+
+
+            /**
+                ip地址分析系统，解决了全校网站主机的ip记录，主机运行情况可视化。数据的导出及导入。异常情况及时邮件通知。致力于维护西邮网络秩序和安全。
+
+
+            */
+
+
+
+
+            /**
+             * 
+             * 平行四边形
+             */
+             JTopo.squared({
+                scene:scene,
+                left: 870,
+                top: 300,
+                a: 135,
+                b: 237,
+                c1: 68,
+                c2: 65,
+                dashedPattern: 3,
+
+            })
+            JTopo.squared({
+                scene:scene,
+                left: 731,
+                top: 364,
+                a: 45,
+                b: 250,
+                c1: 68,
+                c2: 65,
+                dashedPattern: 0.1,
+
+
+            })
+
+            JTopo.squared({
+                scene:scene,
+                left: 682,
+                top: 392,
+                a: 135,
+                b: 157,
+                c1: 68,
+                c2: 65,
+                dashedPattern: 3,
+
+
+            })
+
+            JTopo.squared({
+                scene:scene,
+                left: 822,
+                top: 486,
+                a: 135,
+                b: 85,
+                c1: 68,
+                c2: 65,
+                dashedPattern: 3,
+
+            })
+
+
+            JTopo.squared({
+                scene:scene,
+                left: 1085,
+                top: 443,
+                a: 145,
+                b: 78,
+                c1: 68,
+                c2: 65,
+                dashedPattern: 3,
+
+
+            })
+            JTopo.squared({
+                scene:scene,
+                left: 945,
+                top: 520,
+                a: 125,
+                b: 78,
+                c1: 68,
+                c2: 65,
+                dashedPattern: 3,
+                fullColor: '147,88,30', //填充的颜色
+                changeTime: 1000 //闪烁的时间
+            })
+
+
+
+
+
+            /**
+             * 文字信息
+             */
+             JTopo.newTxt({
+                scene:scene,
+                left: 750,
+                top: 400,
+                data: '网络通信域',
+                rotate: -0.88,
+                fontSize: 22,
+                scene: scene,
+                x: 1.1,
+                y: 0.77,
+                font: "Microsoft YaHei",
+                scaleY: '0.8'
+            })
+            JTopo.newTxt({
+                scene:scene,
+                left: 750,
+                top: 330,
+                data: '网络边界域',
+                rotate: -0.55,
+                fontSize: 22,
+                scene: scene,
+                x: 1,
+                y: -0.53,
+                font: "Microsoft YaHei",
+                scaleY: '0.8'
+            })
+            JTopo.newTxt({
+                scene:scene,
+                left: 935,
+                top: 620,
+                data: '管理支持域',
+                rotate: -0.55,
+                fontSize: 14,
+                scene: scene,
+                x: 1,
+                y: -0.5,
+                font: "Microsoft YaHei",
+                scaleY: "0.8"
+            })
+           JTopo.newTxt({
+               scene:scene,
+                left: 1070,
+                top: 545,
+                data: 'DMZ域',
+                rotate: -0.55,
+                fontSize: 14,
+                scene: scene,
+                x: 1,
+                y: -0.5,
+                font: "Microsoft YaHei",
+                scaleY: '0.8'
+            })
+            JTopo.newTxt({
+                scene:scene,
+                left: 570,
+                top: 420,
+                data: '服务器域',
+                rotate: -0.6,
+                fontSize: 22,
+                scene: scene,
+                x: 1,
+                y: -0.53,
+                font: "Microsoft YaHei",
+                scaleY: '0.8'
+            })
+            JTopo.newTxt({
+                scene:scene,
+                left: 700,
+                top: 570,
+                data: '办公域',
+                rotate: -0.88,
+                fontSize: 16,
+                scene: scene,
+                x: 1.1,
+                y: 0.77,
+                font: "Microsoft YaHei",
+                scaleX: '0.8'
+            })
+
+
+            /**
+             * 线条丰富度
+             */
+
+            var nodeA = new JTopo.Node('A')
+            var nodeB = new JTopo.Node('B')
+            var nodeC = new JTopo.Node('C')
+            var nodeD = new JTopo.Node('D')
+            var nodeE = new JTopo.Node('E')
+            var nodeF = new JTopo.Node('F')
+            var nodeG = new JTopo.Node('G')
+            var nodeH = new JTopo.Node('H')
+
+            nodeA.setLocation(700, 450)
+            nodeB.setLocation(900, 360)
+            nodeB.borderRadius = 18
+            nodeC.setLocation(650, 430)
+            nodeD.setLocation(850, 340)
+            nodeE.setLocation(790, 510)
+            nodeF.setLocation(950, 410)
+            nodeG.setLocation(880, 560)
+            nodeH.setLocation(1080, 550)
+
+            scene.add(nodeA)
+            scene.add(nodeB)
+            scene.add(nodeC)
+            scene.add(nodeD)
+            scene.add(nodeE)
+            scene.add(nodeF)
+            scene.add(nodeG)
+            scene.add(nodeH)
+
+            JTopo.newLink({
+                scene: scene,
+                node1: nodeA,
+                node2: nodeB,
+                strokeColor: '200,16,26',
+                arrowsRadius: 20,
+                dashedPattern: 6
+            })
+
+            JTopo.newLinkImage({
+                node1: nodeE,
+                node2: nodeF,
+                scene: scene
+            })
+
+            // nodeH.setSize(100,100)
+            JTopo.newLinkMove({
+                node1: nodeG,
+                node2: nodeH,
+                scene: scene
+            })
+
+            /**
+             * 设置标签闪烁
+             */
+            setInterval(function () {
+                if (nodeB.alarm == '') {
+                    nodeB.alarm = 'Warring'
+                    nodeB.alarmColor = '255,50,50'
+                    nodeB.alarmAlpha = 0.5
+                    nodeA.visible = true
+                } else {
+                    nodeB.alarm = ''
+                    nodeB.alarmColor = '255,50,50'
+                    nodeB.alarmAlpha = 0.5
+                    nodeA.visible = false
+                }
+            }, 500)
+
+            var i = 1
+            var linkCD = new JTopo.Link(nodeC, nodeD)
+
+            setInterval(function () {
+                if (i == 1) {
+
+                    linkCD.dashedPattern = 0.1;
+                    linkCD.arrowsRadius = 20 //连线的箭头
+                    scene.add(linkCD)
+
+                    i = 0
+                } else {
+                    linkCD.dashedPattern = 6;
+                    linkCD.arrowsRadius = 20 //连线的箭头
+                    linkCD.strokeColor = JTopo.util.randomColor()
+                    scene.add(linkCD)
+                    i = 1
+                }
+
+            }, 1000)
+
+
+
+            var rootNode1 = new JTopo.Node('root1')
+            rootNode1.setLocation(400, 400)
+            rootNode1.alarm = 'Warring'
+            rootNode1.alarmColor = '255,200,100'
+            rootNode1.alarmAlpha = 0.5
+            scene.add(rootNode1)
+            borderWidth = 100
+            console.log(nodeB)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+        //窗口尺寸改变响应（修改canvas大小）
+        function resizeCanvas() {
+            $("#canvas").attr("width", $(window).get(0).innerWidth);
+            $("#canvas").attr("height", $(window).get(0).innerHeight);
+        };
+    </script>
+</body>
+
+</html>
